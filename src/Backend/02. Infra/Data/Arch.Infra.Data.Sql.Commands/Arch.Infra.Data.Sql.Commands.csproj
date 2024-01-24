@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Zamin.Extensions.Events.Outbox.Dal.EF" Version="8.0.0" />
+		<PackageReference Include="Zamin.Infra.Data.Sql.Commands" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Orders\Configs\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\01. Core\Arch.Core.Contracts\Arch.Core.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

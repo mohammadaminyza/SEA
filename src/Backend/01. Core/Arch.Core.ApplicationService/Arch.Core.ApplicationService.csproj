@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+		<PropertyGroup>
+				<TargetFramework>net8.0</TargetFramework>
+				<ImplicitUsings>enable</ImplicitUsings>
+				<Nullable>enable</Nullable>
+		</PropertyGroup>
+
+		<ItemGroup>
+				<PackageReference Include="Zamin.Core.ApplicationServices" Version="8.0.0" />
+		</ItemGroup>
+
+		<ItemGroup>
+				<ProjectReference Include="..\Arch.Core.Contracts\Arch.Core.Contracts.csproj" />
+				<ProjectReference Include="..\Arch.Core.Domain\Arch.Core.Domain.csproj" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <Folder Include="Orders\Commands\UpdateOrderAddress\" />
+		  <Folder Include="Orders\Queries\GetOrders\" />
+		  <Folder Include="Orders\Queries\GetOrderById\" />
+		</ItemGroup>
+
+</Project>
