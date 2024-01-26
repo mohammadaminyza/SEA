@@ -39,6 +39,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\01. Core\Arch.Core.ApplicationService\Arch.Core.ApplicationService.csproj" />
+	  <ProjectReference Include="..\..\01. Core\Arch.Core.Contracts\Arch.Core.Contracts.csproj" />
 	  <ProjectReference Include="..\..\02. Infra\Data\Arch.Infra.Data.Sql.Commands\Arch.Infra.Data.Sql.Commands.csproj" />
 	  <ProjectReference Include="..\..\02. Infra\Data\Arch.Infra.Data.Sql.Queries\Arch.Infra.Data.Sql.Queries.csproj" />
 	</ItemGroup>
