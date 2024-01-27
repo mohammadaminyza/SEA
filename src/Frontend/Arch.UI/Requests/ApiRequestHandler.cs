@@ -1,12 +1,13 @@
 ﻿using Arch.Core.Contracts.Orders.Commands.CreateOrder;
 using Arch.Core.Contracts.Orders.Queries.GetOrders;
-using Arch.UI.RequestHandlers;
 using System.Text;
 using System.Text.Json;
 using Zamin.Core.RequestResponse.Commands;
 using Zamin.Core.RequestResponse.Queries;
 
-public class ApiRequestHandler : IRequestMediator
+namespace Arch.UI.Requests;
+
+public class ApiRequestHandler : IRequestHandler
 {
     private readonly HttpClient _httpClient;
     private readonly JsonSerializerOptions _serializerOptions;

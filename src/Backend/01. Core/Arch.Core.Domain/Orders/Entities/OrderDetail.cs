@@ -7,9 +7,13 @@ namespace Arch.Core.Domain.Orders.Entities;
 
 public class OrderDetail : Entity
 {
-    public BusinessId OrderId { get; private set; }
-    public BusinessId ProductId { get; private set; }
-    public Count Count { get; private set; }
+    public BusinessId OrderId { get; private set; } = null!;
+    public BusinessId ProductId { get; private set; } = null!;
+    public Count Count { get; private set; } = null!;
+
+    private OrderDetail()
+    {
+    }
 
     public OrderDetail(BusinessId businessId, BusinessId orderId, BusinessId productId, Count count)
     {

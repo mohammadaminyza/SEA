@@ -3,9 +3,9 @@ using Zamin.Core.Contracts.ApplicationServices.Queries;
 using Zamin.Core.RequestResponse.Commands;
 using Zamin.Core.RequestResponse.Queries;
 
-namespace Arch.UI.RequestHandlers;
+namespace Arch.UI.Requests;
 
-public class DirectRequestHandler : IRequestMediator
+public class DirectRequestHandler : IRequestHandler
 {
     private readonly ICommandDispatcher _commandDispatcher;
     private readonly IQueryDispatcher _queryDispatcher;

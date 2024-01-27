@@ -2,6 +2,7 @@
 
 namespace Arch.Core.Domain.Orders.ValueObjects;
 
+
 public class Address : BaseValueObject<Address>
 {
     public string Street { get; private set; }

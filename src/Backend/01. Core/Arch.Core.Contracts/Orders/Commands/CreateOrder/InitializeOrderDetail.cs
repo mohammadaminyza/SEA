@@ -3,6 +3,6 @@
 public class InitializeOrderDetail
 {
     public Guid ProductId { get; set; }
-    public string Street { get; set; } = null!;
-    public string Plaque { get; set; } = null!;
+    public int Count { get; set; } = 1;
+
 }

@@ -1,25 +1,47 @@
-var builder = WebApplication.CreateBuilder(args);
+using Arch.Endpoints.API;
+using Arch.UI.Requests;
+using System.Globalization;
+using Zamin.Extensions.DependencyInjection;
+using Zamin.Utilities.SerilogRegistration.Extensions;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+SerilogExtensions.RunWithSerilogExceptionHandling(() =>
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+    var culture = new CultureInfo("fa-IR", false);
+    culture.DateTimeFormat = CultureInfo.InvariantCulture.DateTimeFormat;
+    CultureInfo.CurrentCulture = culture;
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
 
-app.UseRouting();
+    var builder = WebApplication.CreateBuilder(args);
 
-app.UseAuthorization();
+    // Add services to the container.
+    builder.Services.AddRazorPages();
+    builder.Services.AddScoped<IRequestHandler, DirectRequestHandler>();
 
-app.MapRazorPages();
+    var app = builder.AddZaminSerilog(o =>
+    {
+        o.ApplicationName = builder.Configuration.GetValue<string>("ApplicationName");
+        o.ServiceId = builder.Configuration.GetValue<string>("ServiceId");
+        o.ServiceName = builder.Configuration.GetValue<string>("ServiceName");
+        o.ServiceVersion = builder.Configuration.GetValue<string>("ServiceVersion");
+    }).ConfigureServices().ConfigurePipeline();
 
-app.Run();
+    // Configure the HTTP request pipeline.
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseExceptionHandler("/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+
+    app.UseRouting();
+
+    app.UseAuthorization();
+
+    app.MapRazorPages();
+
+    app.Run();
+
+});

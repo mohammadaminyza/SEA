@@ -7,5 +7,5 @@ public class CreateOrderCommand : ICommand
     public Guid UserId { get; set; }
     public string Street { get; set; } = null!;
     public string Plaque { get; set; } = null!;
-    public InitializeOrderDetail OrderDetails { get; set; } = new();
+    public InitializeOrderDetail OrderDetail { get; set; } = new();
 }

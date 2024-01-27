@@ -10,12 +10,18 @@ public class CreateOrderValidator : AbstractValidator<CreateOrderCommand>
     public CreateOrderValidator(ITranslator translator)
     {
         RuleFor(o => o.Street)
-            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_NOT_VALID]);
+            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_REQUIRED]);
 
         RuleFor(o => o.Plaque)
-            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_NOT_VALID]);
+            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_REQUIRED]);
 
         RuleFor(o => o.UserId)
-            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_NOT_VALID]);
+            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_REQUIRED]);
+
+        RuleFor(o => o.OrderDetail.ProductId)
+            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_REQUIRED]);
+
+        RuleFor(o => o.OrderDetail.Count)
+            .NotEmpty().WithMessage(translator[ArchValidationError.VALIDATION_ERROR_REQUIRED]);
     }
 }

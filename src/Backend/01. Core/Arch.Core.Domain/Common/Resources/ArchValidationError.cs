@@ -13,6 +13,7 @@
         public const string VALIDATION_ERROR_DUPLICATE = nameof(VALIDATION_ERROR_DUPLICATE);
 
         public const string VALIDATION_ERROR_NOT_VALID = nameof(VALIDATION_ERROR_NOT_VALID);
+        public const string VALIDATION_ERROR_NOT_FOUND = nameof(VALIDATION_ERROR_NOT_FOUND);
 
         public const string VALIDATION_ERROR_NOT_EMPTY = nameof(VALIDATION_ERROR_NOT_EMPTY);
 

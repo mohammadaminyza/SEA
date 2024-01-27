@@ -1,0 +1,51 @@
+﻿@page
+@model Arch.UI.Pages.Orders.CreateModel
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Create New Order</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.UserId" class="form-label">User ID</label>
+                            <input asp-for="CreateOrderCommand.UserId" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.UserId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-label">Product ID</label>
+                            <input asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.OrderDetails.ProductId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.Street" class="form-label">Customer Name</label>
+                            <input asp-for="CreateOrderCommand.Street" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.Street" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.Plaque" class="form-label">Order Date</label>
+                            <input asp-for="CreateOrderCommand.Plaque" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.Plaque" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-label">Order Date</label>
+                            <input asp-for="CreateOrderCommand.Plaque" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.Plaque" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

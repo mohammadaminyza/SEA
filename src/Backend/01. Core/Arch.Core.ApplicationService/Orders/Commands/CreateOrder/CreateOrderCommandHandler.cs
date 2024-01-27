@@ -18,7 +18,7 @@ public class CreateOrderCommandHandler : CommandHandler<CreateOrderCommand>
 
     public override async Task<CommandResult> Handle(CreateOrderCommand command)
     {
-        var entity = new Order(Guid.NewGuid(), command.UserId, (command.Street, command.Plaque));
+        var entity = new Order(Guid.NewGuid(), command.UserId, (command.Street, command.Plaque), command.OrderDetail.ProductId, command.OrderDetail.Count);
 
         await _orderCommandRepository.InsertAsync(entity);
         await _orderCommandRepository.CommitAsync();
