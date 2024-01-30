@@ -13,8 +13,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arch.Infra.Data.Sql.Commands.Migrations
 {
     [DbContext(typeof(ArchCommandDbContext))]
-    [Migration("20240127071752_Mig-Init")]
-    partial class MigInit
+    [Migration("20240130163150_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,11 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
 
             modelBuilder.Entity("Arch.Core.Domain.Orders.Entities.Order", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<Guid>("BusinessId")
                         .HasColumnType("uniqueidentifier");
@@ -69,6 +69,17 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                                 .HasColumnName("Street");
                         });
 
+                    b.ComplexProperty<Dictionary<string, object>>("Tax", "Arch.Core.Domain.Orders.Entities.Order.Tax#Tax", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<decimal>("TaxAmount")
+                                .HasColumnType("decimal(18,2)");
+
+                            b1.Property<decimal>("TaxRate")
+                                .HasColumnType("decimal(18,2)");
+                        });
+
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
@@ -102,8 +113,8 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                     b.Property<DateTime?>("ModifiedDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
@@ -180,12 +191,13 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
 
             modelBuilder.Entity("Arch.Core.Domain.Orders.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("Arch.Core.Domain.Orders.Entities.Order", null)
+                    b.HasOne("Arch.Core.Domain.Orders.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
-                        .HasPrincipalKey("BusinessId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Arch.Core.Domain.Orders.Entities.Order", b =>

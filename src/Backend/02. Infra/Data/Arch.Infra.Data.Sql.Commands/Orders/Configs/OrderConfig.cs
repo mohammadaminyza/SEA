@@ -13,6 +13,14 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
             .HasConversion<BusinessIdConversion>()
             .IsRequired();
 
+        builder.ComplexProperty(o => o.Tax, t =>
+        {
+            t.Property(c => c.TaxAmount)
+                .IsRequired();
+            t.Property(c => c.TaxRate)
+                .IsRequired();
+        });
+
         builder.ComplexProperty(o => o.Address, address =>
         {
             address.Property(a => a.Street)
@@ -28,7 +36,7 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
         builder.HasMany(o => o.OrderDetails)
             .WithOne() // Assuming OrderDetail has a reference back to Order
             .HasForeignKey(o => o.OrderId) // Assuming foreign key name in OrderDetail
-            .HasPrincipalKey(o => o.BusinessId) // Assuming foreign key name in OrderDetail
-            .IsRequired();
+            .HasPrincipalKey(o => o.Id)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

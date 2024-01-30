@@ -17,7 +17,7 @@ public class RemoveOrderCommandHandler : CommandHandler<RemoveOrderCommand>
 
     public override async Task<CommandResult> Handle(RemoveOrderCommand command)
     {
-        var entity = await _orderCommandRepository.GetAsync(command.BusinessId);
+        var entity = await _orderCommandRepository.GetAsync(command.Id);
 
         entity.Remove();
         _orderCommandRepository.Delete(entity);

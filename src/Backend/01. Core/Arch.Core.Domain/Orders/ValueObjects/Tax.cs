@@ -7,7 +7,7 @@ public class Tax : BaseValueObject<Tax>
     public decimal TaxAmount { get; private set; }
     public decimal TaxRate { get; private set; }
 
-    public Tax(decimal taxAmount, decimal taxRate)
+    private Tax(decimal taxAmount, decimal taxRate)
     {
         ValidateTaxAmount(taxAmount);
         ValidateTaxRate(taxRate);
@@ -15,6 +15,12 @@ public class Tax : BaseValueObject<Tax>
         TaxAmount = taxAmount;
         TaxRate = taxRate;
     }
+
+    public static Tax Create(decimal taxAmount, decimal taxRate) => new Tax(taxAmount, taxRate);
+
+    public static implicit operator Tax((decimal taxAmount, decimal taxRate) tax) => new Tax(tax.taxAmount, tax.taxRate);
+    public static explicit operator (decimal, decimal)(Tax tax) => (tax.TaxAmount, tax.TaxRate);
+
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

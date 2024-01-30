@@ -18,29 +18,34 @@
                 <div class="card-body">
                     <form method="post">
                         <div class="mb-3">
-                            <label asp-for="CreateOrderCommand.UserId" class="form-label">User ID</label>
+                            <label asp-for="CreateOrderCommand.UserId" class="form-label"></label>
                             <input asp-for="CreateOrderCommand.UserId" class="form-control" />
                             <span asp-validation-for="CreateOrderCommand.UserId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-label">Product ID</label>
-                            <input asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-control" />
-                            <span asp-validation-for="CreateOrderCommand.OrderDetails.ProductId" class="text-danger"></span>
+                            <label asp-for="CreateOrderCommand.OrderDetail.ProductId" class="form-label"></label>
+                            <input asp-for="CreateOrderCommand.OrderDetail.ProductId" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.OrderDetail.ProductId" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="CreateOrderCommand.Street" class="form-label">Customer Name</label>
+                            <label asp-for="CreateOrderCommand.Street" class="form-label"></label>
                             <input asp-for="CreateOrderCommand.Street" class="form-control" />
                             <span asp-validation-for="CreateOrderCommand.Street" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="CreateOrderCommand.Plaque" class="form-label">Order Date</label>
+                            <label asp-for="CreateOrderCommand.Plaque" class="form-label"></label>
                             <input asp-for="CreateOrderCommand.Plaque" class="form-control" />
                             <span asp-validation-for="CreateOrderCommand.Plaque" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <label asp-for="CreateOrderCommand.OrderDetails.ProductId" class="form-label">Order Date</label>
-                            <input asp-for="CreateOrderCommand.Plaque" class="form-control" />
-                            <span asp-validation-for="CreateOrderCommand.Plaque" class="text-danger"></span>
+                            <label asp-for="CreateOrderCommand.TaxAmount" class="form-label"></label>
+                            <input asp-for="CreateOrderCommand.TaxAmount" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.TaxAmount" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateOrderCommand.TaxRate" class="form-label"></label>
+                            <input asp-for="CreateOrderCommand.TaxRate" class="form-control" />
+                            <span asp-validation-for="CreateOrderCommand.TaxRate" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

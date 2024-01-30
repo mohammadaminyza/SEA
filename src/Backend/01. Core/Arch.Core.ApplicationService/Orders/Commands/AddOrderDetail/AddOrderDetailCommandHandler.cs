@@ -18,7 +18,7 @@ public class AddOrderDetailCommandHandler : CommandHandler<AddOrderDetailCommand
     public override async Task<CommandResult> Handle(AddOrderDetailCommand command)
     {
         var order = await _orderCommandRepository.GetAsync(command.OrderId);
-        order.AddOrderDetail(command.OrderId, command.ProductId, command.Count);
+        order.AddOrderDetail(command.ProductId, command.Count);
         await _orderCommandRepository.CommitAsync();
 
         return await OkAsync();

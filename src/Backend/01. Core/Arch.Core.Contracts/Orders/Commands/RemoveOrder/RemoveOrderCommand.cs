@@ -4,5 +4,5 @@ namespace Arch.Core.Contracts.Orders.Commands.RemoveOrder;
 
 public class RemoveOrderCommand : ICommand
 {
-    public Guid BusinessId { get; set; }
+    public int Id { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Arch.Infra.Data.Sql.Commands.Migrations
 {
     /// <inheritdoc />
-    public partial class MigInit : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -27,12 +27,13 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                     ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Plaque = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tax_TaxAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Tax_TaxRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     BusinessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.UniqueConstraint("AK_Orders_BusinessId", x => x.BusinessId);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +67,7 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -82,7 +83,7 @@ namespace Arch.Infra.Data.Sql.Commands.Migrations
                         name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "BusinessId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

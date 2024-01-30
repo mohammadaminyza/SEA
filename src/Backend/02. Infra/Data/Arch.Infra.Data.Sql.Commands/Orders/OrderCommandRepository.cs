@@ -5,7 +5,7 @@ using Zamin.Infra.Data.Sql.Commands;
 
 namespace Arch.Infra.Data.Sql.Commands.Orders;
 
-public class OrderCommandRepository : BaseCommandRepository<Order, ArchCommandDbContext>, IOrderCommandRepository
+public class OrderCommandRepository : BaseCommandRepository<Order, ArchCommandDbContext, int>, IOrderCommandRepository
 {
     public OrderCommandRepository(ArchCommandDbContext dbContext) : base(dbContext)
     {

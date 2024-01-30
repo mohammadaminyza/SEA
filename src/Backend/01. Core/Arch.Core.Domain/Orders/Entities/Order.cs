@@ -5,7 +5,7 @@ using Zamin.Core.Domain.ValueObjects;
 
 namespace Arch.Core.Domain.Orders.Entities;
 
-public class Order : AggregateRoot
+public class Order : AggregateRoot<int>
 {
     public BusinessId UserId { get; private set; } = null!;
     public Address Address { get; private set; } = null!;
@@ -19,18 +19,19 @@ public class Order : AggregateRoot
     {
     }
 
-    public Order(BusinessId businessId, BusinessId userId, Address address, BusinessId productId, Count count)
+    public Order(BusinessId businessId, BusinessId userId, Address address, Tax tax, BusinessId productId, Count count)
     {
         BusinessId = businessId;
         UserId = userId;
+        Tax = tax;
         Address = address;
 
-        AddOrderDetail(BusinessId, productId, count);
+        AddOrderDetail(productId, count);
 
         AddEvent(new OrderCreated(BusinessId.Value, UserId.Value, Address.Street, Address.Plaque));
     }
 
-    public void AddOrderDetail(BusinessId orderId, BusinessId productId, Count count)
+    public void AddOrderDetail(BusinessId productId, Count count)
     {
         OrderDetail orderDetail = default;
 
@@ -38,13 +39,13 @@ public class Order : AggregateRoot
         {
             orderDetail = _orderDetails.First(o => o.ProductId == productId);
             orderDetail.ChangeOrderDetailProductCount(count);
-            AddEvent(new OrderDetailProductAdded(orderDetail.BusinessId.Value, orderDetail.OrderId.Value, orderDetail.ProductId.Value, orderDetail.Count.Value));
+            AddEvent(new OrderDetailProductAdded(orderDetail.BusinessId.Value, orderDetail.OrderId, orderDetail.ProductId.Value, orderDetail.Count.Value));
         }
         else
         {
-            orderDetail = new OrderDetail(Guid.NewGuid(), orderId, productId, count);
+            orderDetail = new OrderDetail(Guid.NewGuid(), productId, count);
             _orderDetails.Add(orderDetail);
-            AddEvent(new OrderDetailCreated(orderDetail.BusinessId.Value, orderDetail.OrderId.Value, orderDetail.ProductId.Value, orderDetail.Count.Value));
+            AddEvent(new OrderDetailCreated(orderDetail.BusinessId.Value, orderDetail.OrderId, orderDetail.ProductId.Value, orderDetail.Count.Value));
         }
     }
 
