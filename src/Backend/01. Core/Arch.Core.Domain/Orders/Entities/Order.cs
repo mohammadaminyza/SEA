@@ -9,6 +9,8 @@ public class Order : AggregateRoot
 {
     public BusinessId UserId { get; private set; } = null!;
     public Address Address { get; private set; } = null!;
+    public Tax Tax { get; private set; } = null!;
+
 
     private HashSet<OrderDetail> _orderDetails = new();
     public IReadOnlyCollection<OrderDetail> OrderDetails => _orderDetails;
@@ -51,6 +53,12 @@ public class Order : AggregateRoot
         Address = address;
 
         AddEvent(new OrderAddressUpdated());
+    }
+
+    public void ApplyTax(Tax tax)
+    {
+        Tax = tax;
+        // Todo AddEvent and etc...
     }
 
     public void Remove()
