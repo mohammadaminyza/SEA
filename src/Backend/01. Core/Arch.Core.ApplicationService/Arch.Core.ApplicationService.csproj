@@ -16,7 +16,6 @@
 		</ItemGroup>
 
 		<ItemGroup>
-		  <Folder Include="Orders\Commands\UpdateOrderAddress\" />
 		  <Folder Include="Orders\Queries\GetOrders\" />
 		  <Folder Include="Orders\Queries\GetOrderById\" />
 		</ItemGroup>
