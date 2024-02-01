@@ -6,10 +6,9 @@ using Zamin.Utilities.SerilogRegistration.Extensions;
 
 SerilogExtensions.RunWithSerilogExceptionHandling(() =>
 {
-    var culture = new CultureInfo("fa-IR", false);
+    var culture = new CultureInfo("fa-IR", true);
     culture.DateTimeFormat = CultureInfo.InvariantCulture.DateTimeFormat;
     CultureInfo.CurrentCulture = culture;
-
 
     var builder = WebApplication.CreateBuilder(args);
 
