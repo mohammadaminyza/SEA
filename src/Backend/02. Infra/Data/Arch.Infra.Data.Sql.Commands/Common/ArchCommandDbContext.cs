@@ -17,6 +17,17 @@ namespace Arch.Infra.Data.Sql.Commands.Common
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                var property = entityType.FindProperty("BusinessId");
+                if (property != null)
+                {
+                    // Directly using Fluent API to ignore the 'BusinessId' property
+                    builder.Entity(entityType.ClrType).Ignore("BusinessId");
+                }
+            }
+
             base.OnModelCreating(builder);
         }
     }

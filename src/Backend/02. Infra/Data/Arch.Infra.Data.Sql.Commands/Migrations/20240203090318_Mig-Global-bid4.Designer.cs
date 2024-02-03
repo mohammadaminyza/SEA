@@ -5,6 +5,7 @@ using Arch.Infra.Data.Sql.Commands.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,9 +13,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arch.Infra.Data.Sql.Commands.Migrations
 {
     [DbContext(typeof(ArchCommandDbContext))]
-    partial class ArchCommandDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240203090318_Mig-Global-bid4")]
+    partial class MigGlobalbid4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

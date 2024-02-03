@@ -9,8 +9,6 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
-        builder.Ignore(o => o.BusinessId);
-
         builder.Property(o => o.UserId)
             .HasConversion<BusinessIdConversion>()
             .IsRequired();
