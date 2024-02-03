@@ -3,5 +3,5 @@
 // Advance logic for business rules
 public class OrderService
 {
-
+    //Task GetOrdersReport(GetOrdersQuery queries, IEnumerable<OrderDto> orders);
 }
