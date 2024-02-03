@@ -15,19 +15,19 @@ namespace Arch.Endpoints.API.Orders;
 public class OrdersController : BaseController
 {
     [HttpGet("get")]
-    public async Task<IActionResult> GetOrders(GetOrdersQuery query)
+    public async Task<IActionResult> GetOrders([FromQuery] GetOrdersQuery query)
     {
         return await Query<GetOrdersQuery, PagedData<OrderDto>>(query);
     }
 
     [HttpGet("getById")]
-    public async Task<IActionResult> GetOrderById(GetOrderByIdQuery query)
+    public async Task<IActionResult> GetOrderById([FromQuery] GetOrderByIdQuery query)
     {
         return await Query<GetOrderByIdQuery, OrderByIdDto>(query);
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> CreteOrder(CreateOrderCommand command)
+    public async Task<IActionResult> CreteOrder([FromBody] CreateOrderCommand command)
     {
         return await Create(command);
     }
@@ -39,13 +39,13 @@ public class OrdersController : BaseController
     }
 
     [HttpPut("addOrderDetail")]
-    public async Task<IActionResult> AddOrderAddress(AddOrderDetailCommand command)
+    public async Task<IActionResult> AddOrderAddress([FromBody] AddOrderDetailCommand command)
     {
         return await Edit(command);
     }
 
     [HttpDelete("remove")]
-    public async Task<IActionResult> UpdateOrderAddress(RemoveOrderCommand command)
+    public async Task<IActionResult> UpdateOrderAddress([FromBody] RemoveOrderCommand command)
     {
         return await Delete(command);
     }

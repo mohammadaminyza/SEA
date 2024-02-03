@@ -2,7 +2,7 @@
 
 public partial class Order
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public Guid UserId { get; set; }
     public required string Street { get; set; }
     public required string Plaque { get; set; }
@@ -11,5 +11,4 @@ public partial class Order
     public DateTime? CreatedDateTime { get; set; }
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
-    public Guid BusinessId { get; set; }
 }

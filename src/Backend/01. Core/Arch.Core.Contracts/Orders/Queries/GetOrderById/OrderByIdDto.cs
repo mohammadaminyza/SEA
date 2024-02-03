@@ -10,6 +10,4 @@ public class OrderByIdDto
     public DateTime? CreatedDateTime { get; set; }
     public string? ModifiedByUserId { get; set; }
     public DateTime? ModifiedDateTime { get; set; }
-    public Guid BusinessId { get; set; }
-
 }

@@ -28,7 +28,14 @@ public class OrderQueryRepository : BaseQueryRepository<ArchQueryDbContext>, IOr
 
         var result = await query.ToPagedData(dto, c => new OrderDto()
         {
-
+            Id = c.Id,
+            Plaque = c.Plaque,
+            UserId = c.UserId,
+            Street = c.Street,
+            CreatedByUserId = c.CreatedByUserId,
+            CreatedDateTime = c.CreatedDateTime,
+            ModifiedByUserId = c.ModifiedByUserId,
+            ModifiedDateTime = c.ModifiedDateTime
         });
 
         #endregion
